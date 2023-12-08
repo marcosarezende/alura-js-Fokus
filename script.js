@@ -1,16 +1,15 @@
 const html = document.querySelector('html')
-const focoBt = document.querySelector('.app__card-button--foco')
-const curtoBt = document.querySelector('.app__card-button--curto')
-const longoBt = document.querySelector('.app__card-button--longo')
+const botoesFoco = document.querySelectorAll('button[data-contexto]')
+const banner = document.querySelector('.app__image')
 
-focoBt.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'foco')
+botoesFoco.forEach((botao) => {
+    botao.onclick = (evento) => {
+        alterarContexto(evento.target.getAttribute('data-contexto-id'))
+    }
 })
 
-curtoBt.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-curto')
-})
-
-longoBt.onclick = () => {
-    html.setAttribute('data-contexto', 'descanso-longo')
+function alterarContexto(contexto) {
+    console.log(contexto)
+    html.setAttribute('data-contexto', contexto);
+    banner.setAttribute('src', `/imagens/${contexto}.png`)
 }
