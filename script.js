@@ -1,5 +1,5 @@
 const html = document.querySelector('html')
-const botoesFoco = document.querySelectorAll('button[data-contexto]')
+const botoesFoco = document.querySelectorAll('button.app__card-button')
 const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 
