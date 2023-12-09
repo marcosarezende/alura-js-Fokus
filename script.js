@@ -3,9 +3,9 @@ const botoesFoco = document.querySelectorAll('button.app__card-button')
 const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const musicaFocoInput = document.querySelector('input#alternar-musica')
-const musica = new Audio('/sons/luna-rise-part-one.mp3')
+const musicaFoco = new Audio('/sons/luna-rise-part-one.mp3')
 
-musica.loop = true;
+musicaFoco.loop = true;
 
 botoesFoco.forEach((botao) => {
     botao.onclick = (evento) => {
@@ -43,9 +43,9 @@ function alterarContexto(contexto) {
 
 musicaFocoInput.onchange = (evento) => {
     evento.currentTarget.checked
-    if (evento.currentTarget.checked && musica.paused) {
-        musica.play();
+    if (evento.currentTarget.checked && musicaFoco.paused) {
+        musicaFoco.play();
         return
     }
-    musica.pause();
+    musicaFoco.pause();
 }
