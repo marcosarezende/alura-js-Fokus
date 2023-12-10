@@ -10,11 +10,14 @@ const startPauseBt = document.querySelector('#start-pause')
 const beepAudio = new Audio('/sons/beep.mp3');
 const imagemBt = document.querySelector('.app__card-primary-butto-icon')
 const iniciarOuPausarBt = document.querySelector('#start-pause span')
+const tempoNaTela = document.querySelector('#timer')
 
-let tempoDecorridoEmSEgundos = 5
+let tempoDecorridoEmSEgundos = 1500
 let identificadorContagem = null;
 
 focoAudio.loop = true;
+
+mostarTempo()
 
 botoesFoco.forEach((botao) => {
     botao.onclick = (evento) => {
@@ -30,24 +33,29 @@ function trocarBotaoAtivo(botao) {
 }
 
 function alterarContexto(contexto) {
+    interromperContador()
     html.setAttribute('data-contexto', contexto);
     banner.setAttribute('src', `/imagens/${contexto}.png`)
     switch (contexto) {
         case 'foco':
             titulo.innerHTML = `Otimize sua produtividade,<br>
             <strong class="app__title-strong">mergulhe no que importa.</strong>`
+            tempoDecorridoEmSEgundos = 1500
             break;
         case 'descanso-curto':
             titulo.innerHTML = `Que tal dar uma respirada,<br>
             <strong class="app__title-strong">faça uma pausa curta.</strong>`
+            tempoDecorridoEmSEgundos = 300
             break;
         case 'descanso-longo':
             titulo.innerHTML = `Hora de voltar à superfície,<br>
             <strong class="app__title-strong">faça uma pausa longa.</strong>`
+            tempoDecorridoEmSEgundos = 900
             break;
         default:
             break;
     }
+    mostarTempo();
 }
 
 musicaFocoInput.onchange = (evento) => {
@@ -62,7 +70,6 @@ musicaFocoInput.onchange = (evento) => {
 startPauseBt.onclick = () => {
     if (identificadorContagem) {
         pauseAudio.play()
-        iniciarOuPausarBt.textContent = 'Começar'
         interromperContador()
         return
     }
@@ -78,17 +85,25 @@ function fazerContagem() {
 
 function contagemRegressiva() {
     if (tempoDecorridoEmSEgundos == 0) {
-        beepAudio.play()
+        //beepAudio.play()
         interromperContador()
-        tempoDecorridoEmSEgundos = 5
+        tempoDecorridoEmSEgundos = 1500
+        mostarTempo();
         return
     }
     tempoDecorridoEmSEgundos -= 1
-    console.log(tempoDecorridoEmSEgundos)
+    mostarTempo();
 }
 
 function interromperContador() {
     imagemBt.src = '/imagens/play_arrow.png'
+    iniciarOuPausarBt.textContent = 'Começar'
     clearInterval(identificadorContagem)
     identificadorContagem = null
+}
+
+function mostarTempo() {
+    const tempo = new Date(tempoDecorridoEmSEgundos * 1000)
+    const tempoFormatado = tempo.toLocaleTimeString('pt-Br', { minute: '2-digit', second: '2-digit' })
+    tempoNaTela.innerHTML = `${tempoFormatado}`
 }
