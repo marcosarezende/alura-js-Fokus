@@ -9,6 +9,7 @@ const pauseAudio = new Audio('/sons/pause.mp3')
 const startPauseBt = document.querySelector('#start-pause')
 const beepAudio = new Audio('/sons/beep.mp3');
 const imagemBt = document.querySelector('.app__card-primary-butto-icon')
+const iniciarOuPausarBt = document.querySelector('#start-pause span')
 
 let tempoDecorridoEmSEgundos = 5
 let identificadorContagem = null;
@@ -61,15 +62,17 @@ musicaFocoInput.onchange = (evento) => {
 startPauseBt.onclick = () => {
     if (identificadorContagem) {
         pauseAudio.play()
+        iniciarOuPausarBt.textContent = 'Começar'
         interromperContador()
         return
     }
-    iniciarContagem()
+    fazerContagem()
 }
 
-function iniciarContagem() {
+function fazerContagem() {
     palyAudio.play()
     imagemBt.src = '/imagens/pause.png'
+    iniciarOuPausarBt.textContent = 'Pausar'
     identificadorContagem = setInterval(contagemRegressiva, 1000)
 }
 
