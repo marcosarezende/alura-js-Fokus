@@ -45,7 +45,7 @@ formAdicionarTarefa.onsubmit = (evento) => {
     tarefas.push(tarefa)
     criarElementoTarefa(tarefa)
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
-    textarea.value('')
+    textarea.value = ''
     formAdicionarTarefa.classList.toggle('hidden')
 }
 
