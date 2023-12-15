@@ -12,7 +12,7 @@ const imagemBt = document.querySelector('.app__card-primary-butto-icon')
 const iniciarOuPausarBt = document.querySelector('#start-pause span')
 const tempoNaTela = document.querySelector('#timer')
 
-let tempoDecorridoEmSEgundos = 3
+let tempoDecorridoEmSEgundos = 1500
 let identificadorContagem = null;
 
 focoAudio.loop = true;
@@ -40,17 +40,17 @@ function alterarContexto(contexto) {
         case 'foco':
             titulo.innerHTML = `Otimize sua produtividade,<br>
             <strong class="app__title-strong">mergulhe no que importa.</strong>`
-            tempoDecorridoEmSEgundos = 15
+            tempoDecorridoEmSEgundos = 1500
             break;
         case 'descanso-curto':
             titulo.innerHTML = `Que tal dar uma respirada,<br>
             <strong class="app__title-strong">faça uma pausa curta.</strong>`
-            tempoDecorridoEmSEgundos = 3
+            tempoDecorridoEmSEgundos = 300
             break;
         case 'descanso-longo':
             titulo.innerHTML = `Hora de voltar à superfície,<br>
             <strong class="app__title-strong">faça uma pausa longa.</strong>`
-            tempoDecorridoEmSEgundos = 9
+            tempoDecorridoEmSEgundos = 900
             break;
         default:
             break;
@@ -87,7 +87,7 @@ function contagemRegressiva() {
     if (tempoDecorridoEmSEgundos == 0) {
         //beepAudio.play()
         interromperContador()
-        tempoDecorridoEmSEgundos = 15
+        tempoDecorridoEmSEgundos = 1500
         mostarTempo();
         const focoAtivo = html.getAttribute('data-contexto') == 'foco'
         if (focoAtivo) {
